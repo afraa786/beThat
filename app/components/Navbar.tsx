@@ -12,12 +12,7 @@ const Navbar = () => {
         // Trigger slide-in after a small delay or immediately
         setIsVisible(true);
 
-        // Optional: If user wants it to slide in ONLY after scrolling a bit?
-        // "make the navabr smootly slide from the top" could mean on load or scroll.
-        // Usually "fast cause it is taking too much tmea and i cant see the navbar coming" implies
-        // they want it to appear quickly/smoothly as the yellow screen settles.
-        // I will make it slide in on mount with a slight delay to sync with the "fast" yellow screen.
-
+    
     }, []);
 
     return (

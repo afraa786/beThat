@@ -4,94 +4,61 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 
 export default function HeroOverlay() {
-    const [scrollY, setScrollY] = useState(0);
-    const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
+  const [scrollY, setScrollY] = useState(0);
 
-    useEffect(() => {
-        const handleResize = () =>
-            setWindowSize({
-                width: window.innerWidth,
-                height: window.innerHeight,
-            });
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-        const handleScroll = () => setScrollY(window.scrollY);
+  const ANIMATION_DISTANCE = 150;
+  const progress = Math.min(scrollY / ANIMATION_DISTANCE, 1);
 
-        handleResize();
+  // Yellow scale animation
+  const yellowScale = 1 - progress * 0.3; // shrinks smoothly
 
-        window.addEventListener("resize", handleResize);
-        window.addEventListener("scroll", handleScroll);
+  // Lady scale animation
+  const ladyScale = 1 + progress * 1.2; // grows smoothly
 
-        return () => {
-            window.removeEventListener("resize", handleResize);
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, []);
+  return (
+    <div className="fixed inset-0 z-[10000] pointer-events-none overflow-hidden flex items-center justify-center">
+      
+      {/* Yellow Background */}
+      <div
+        className="absolute inset-0 flex items-center justify-center"
+        style={{
+          transform: `scale(${yellowScale})`,
+          transition: "transform 0.1s linear",
+        }}
+      >
+        <Image
+          src="/yellow.png"
+          alt="Yellow Background"
+          fill
+          className="object-cover"
+          priority
+        />
+      </div>
 
-    const ANIMATION_DISTANCE = 150;
-    const progress = Math.min(scrollY / ANIMATION_DISTANCE, 1);
-
-    // ---------- YELLOW OVERLAY ----------
-    const startYellowW = windowSize.width;
-    const startYellowH = windowSize.height;
-
-    const endYellowW = 968;
-    const endYellowH = 470;
-
-    const currentYellowW =
-        startYellowW + (endYellowW - startYellowW) * progress;
-
-    const currentYellowH =
-        startYellowH + (endYellowH - startYellowH) * progress;
-
-    // ---------- LADY IMAGE ----------
-    const startLadyW = 352;
-    const startLadyH = 527;
-
-    const endLadyW = 900;
-    const endLadyH = 1350;
-
-    const currentLadyW =
-        startLadyW + (endLadyW - startLadyW) * progress;
-
-    const currentLadyH =
-        startLadyH + (endLadyH - startLadyH) * progress;
-
-    return (
-        <div className="absolute inset-0 z-[10000] pointer-events-none flex items-center justify-center overflow-hidden">
-
-            {/* Yellow Overlay - Restored Image */}
-            <div
-                className="relative flex items-center justify-center"
-                style={{
-                    width: windowSize.width === 0 ? "100vw" : `${currentYellowW}px`,
-                    height: windowSize.height === 0 ? "100vh" : `${currentYellowH}px`,
-                }}
-            >
-                <Image
-                    src="/yellow.png"
-                    alt="Yellow Background"
-                    fill
-                    className="object-cover"
-                    priority
-                />
-
-                {/* Lady Image */}
-                <div
-                    className="relative z-10"
-                    style={{
-                        width: `${currentLadyW}px`,
-                        height: `${currentLadyH}px`,
-                    }}
-                >
-                    <Image
-                        src="/lady.png"
-                        alt="Lady"
-                        fill
-                        className="object-contain"
-                        priority
-                    />
-                </div>
-            </div>
-        </div>
-    );
+      {/* Lady */}
+      <div
+        className="relative z-10"
+        style={{
+          width: "352px",
+          height: "527px",
+          transform: `scale(${ladyScale})`,
+          transition: "transform 0.1s linear",
+        }}
+      >
+        <Image
+          src="/lady.png"
+          alt="Lady"
+          fill
+          className="object-contain"
+          priority
+        />
+      </div>
+    </div>
+  );
 }
