@@ -1,33 +1,101 @@
 import Image from "next/image";
-import HeroOverlay from "./HeroOverlay";
-
 
 const Hero = () => {
-    return (
-        <section className="sticky top-0 w-full h-screen overflow-hidden">
-            {/* Background Image */}
-            <div className="absolute inset-0 z-0">
-                <Image
-                    src="/bg-image.jpg"
-                    alt="Hero Background"
-                    fill
-                    className="object-cover"
-                    priority
-                    quality={100}
-                />
-            </div>
-
-            <div className="absolute inset-0 z-0 bg-black/20" />
-
-            <HeroOverlay />
+  return (
+    <>
+      <section className="relative w-full aspect-[1440/856]">
+        
+        <Image
+          src="/bg-image.png"
+          alt="Hero Background"
+          fill
+          className="object-cover"
+          priority
+          quality={100}
+        />
 
 
+<div
+  className="absolute z-10"
+  style={{
+    top: "180px",
+    left: "236px",
+    right: "236px",
+  }}
+>
+  <div className="relative w-full h-[470px] bg-[#EEFF4E]">
+    
+    <h1
+      className="absolute left-[49px] right-[49px] bottom-[-20px] z-10 text-center
+                 text-white uppercase font-bold
+                 text-[140px] leading-none"
+      style={{
+        fontFamily: "Poppins",
+      }}
+    >
+      COLLECTION
+    </h1>
 
-            <div className="relative z-10 flex items-center justify-center h-full">
-                {/* Hero Content would go here */}
-            </div>
-        </section>
-    );
+  </div>
+</div>
+
+
+    {/* LADY IMAGE */}
+    <div
+      className="absolute left-[50%] top-[45%] translate-x-[-50%] translate-y-[-50%] z-20"
+   
+     >
+     
+      <img src="/lady.png" alt="Lady" className="w-full h-full object-cover" />
+        </div>
+
+
+
+
+        {/* Sphere1*/}
+        <div
+          className="absolute z-20"
+          style={{
+            position: "absolute",
+            left: "159px",
+            top: "291px",
+          }}
+        >
+          <Image
+            src="/ellipse1.svg"
+            alt="Sphere 1"
+            width={155}
+            height={155}
+            className="w-[155px] h-[155px]"
+            priority
+          />
+        </div>
+
+              <div
+          className="absolute z-20"
+          style={{
+            position: "absolute",
+            left: "1255px",
+            top: "670px",
+          }}
+        >
+          <Image
+            src="/ellipse2.png"
+            alt="Sphere 1"
+            width={271}
+            height={271}
+            className="w-[271px] h-[271px]"
+            priority
+          />
+        </div>
+
+  
+      </section>
+
+
+      <div className="w-full h-[222px] bg-[#EFEFEF] -mt-[120px]" />
+    </>
+  );
 };
 
 export default Hero;
