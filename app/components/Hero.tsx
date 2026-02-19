@@ -51,8 +51,6 @@ const Hero = () => {
 
 
 
-
-        {/* Sphere1*/}
         <div
           className="absolute z-20"
           style={{
@@ -71,7 +69,62 @@ const Hero = () => {
           />
         </div>
 
-              <div
+
+<div
+  className="absolute z-20"
+  style={{
+    top: "670px",
+    left: "398px",
+    width: "142px",
+    height: "214px",
+  }}
+>
+  <Image
+    src="/export1.png"  
+    alt="Model"
+    width={142}
+    height={214}
+    priority
+  />
+</div>
+
+
+<div
+  className="absolute z-20"
+  style={{
+    top: "670px",
+    left: "236px"
+  }}
+>
+  <Image
+    src="/export2.png"  
+    alt="Model"
+    width={142}
+    height={213}
+    priority
+  />
+</div>
+
+<div
+  className="absolute z-20"
+  style={{
+    top: "670px",
+    left: "0px"
+  }}
+>
+  <Image
+    src="/export3.png"  
+    alt="Model"
+    width={225}
+    height={213}
+    priority
+  />
+</div>
+
+
+
+
+        <div
           className="absolute z-20"
           style={{
             position: "absolute",
@@ -93,7 +146,7 @@ const Hero = () => {
       </section>
 
 
-      <div className="w-full h-[222px] bg-[#EFEFEF] -mt-[120px]" />
+      <div className="w-full h-[209px] bg-[#EFEFEF] -mt-[120px]" />
     </>
   );
 };

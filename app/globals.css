@@ -42,3 +42,17 @@ body {
   font-weight: 600;
   line-height: 32px;
 }
+
+.small-image-position {
+  position: absolute;
+  top: 642px;
+  left: 0;
+}
+
+
+.hero-image {
+  width: 308px;
+  height: 214px;
+  object-fit: cover;
+}
+
