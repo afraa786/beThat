@@ -18,10 +18,10 @@ export default function Footer() {
    <div className="relative w-full max-w-[1440px] h-full mx-auto">
 
 <Image
-  src="/one.png"
+  src="/zeroone.png"
   alt="01"
-    width={201}
-    height={197}
+  width={201}
+  height={197}
   className="absolute left-[-39px] bottom-[214px] z-10"
 />
 <Image
@@ -129,7 +129,6 @@ export default function Footer() {
 
         </div>
 
-        {/* Bottom bar */}
         <div className="absolute bottom-[20px] left-0 w-full flex justify-between px-[80px] text-[16px] font-normal leading-[32px] text-[#373737]">
 
           <p>bethat% © 2026. All rights reserved.</p>
