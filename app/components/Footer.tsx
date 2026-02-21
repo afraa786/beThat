@@ -20,15 +20,15 @@ export default function Footer() {
 <Image
   src="/zeroone.png"
   alt="01"
-  width={201}
-  height={197}
+  width={130}
+  height={155}
   className="absolute left-[-39px] bottom-[214px] z-10"
 />
 <Image
   src="/slash.png"
   alt="02"
-  width={201}
-  height={197}
+  width={268}
+  height={250}
   className="absolute left-[-40px] bottom-0 z-10"
 />
 <Image
@@ -36,7 +36,7 @@ export default function Footer() {
   alt="03"
   width={201}
   height={197}
-  className="absolute left-[158px] bottom-0 z-10"
+  className="absolute left-[120px] bottom-3 z-10"
 />
 
 
