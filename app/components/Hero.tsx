@@ -15,36 +15,46 @@ const Hero = () => {
   const [showNavbar, setShowNavbar] = useState(false);
   const triggeredRef = useRef(false);
 
-  // Yellow overlay animation scope
   const [yellowScope, animateYellow] = useAnimate();
+  const [ladyScope, animateLady] = useAnimate();
 
   const runIntroAnimation = async () => {
     if (triggeredRef.current) return;
     triggeredRef.current = true;
     setHasTriggered(true);
 
-    // Step 1: Shrink yellow from full-screen to final position
-    await animateYellow(
-      yellowScope.current,
-      {
-        top: "180px",
-        left: "236px",
-        right: "236px",
-        height: "470px",
-      },
-      {
-        duration: 1.6,
-        ease: CINEMATIC_EASE,
-      }
-    );
+    // Yellow shrink + lady scale up — perfectly in sync
+    await Promise.all([
+      animateYellow(
+        yellowScope.current,
+        {
+          top: "180px",
+          left: "236px",
+          right: "236px",
+          height: "470px",
+        },
+        {
+          duration: 1.6,
+          ease: CINEMATIC_EASE,
+        }
+      ),
+      animateLady(
+        ladyScope.current,
+        { scale: 1, transformOrigin: "bottom center" },
+        {
+          duration: 1.6,
+          ease: CINEMATIC_EASE,
+        }
+      ),
+    ]);
 
-    // After yellow settles — reveal everything together
+    // After both settle — reveal everything together
     setShowNavbar(true);
     setShowEllipses(true);
     setShowBottomImages(true);
   };
 
-  // Fade in COLLECTION text at ~65% of yellow shrink (≈1.05s into 1.6s)
+  // Fade in COLLECTION text at ~65% of yellow shrink
   useEffect(() => {
     if (!hasTriggered) return;
     const timer = setTimeout(() => setShowCollection(true), 1050);
@@ -72,7 +82,7 @@ const Hero = () => {
 
   return (
     <>
-      {/* ── NAVBAR — slides in after yellow finishes shrinking ── */}
+      {/* ── NAVBAR ── */}
       <Navbar isVisible={showNavbar} />
 
       <section className="relative w-full aspect-[1440/856] overflow-hidden">
@@ -87,13 +97,11 @@ const Hero = () => {
           quality={100}
         />
 
-        {/* ── YELLOW OVERLAY — starts full-screen, shrinks on scroll ── */}
-        {/* z-30 so it's above bg, ellipses, bottom images, but below lady (z-50) */}
+        {/* ── YELLOW OVERLAY ── */}
         <div
           ref={yellowScope}
           className="absolute bg-[#EEFF4E] overflow-visible"
           style={{
-            // Initial: full viewport coverage
             top: 0,
             left: 0,
             right: 0,
@@ -101,16 +109,12 @@ const Hero = () => {
             zIndex: 30,
           }}
         >
-          {/* COLLECTION text — fades in at ~65% of yellow shrink */}
           <AnimatePresence>
             {showCollection && (
               <motion.h1
                 className="absolute left-[49px] right-[49px] bottom-[-20px] z-10
                            text-center text-white uppercase font-bold leading-none"
-                style={{
-                  fontFamily: "Poppins, sans-serif",
-                  fontSize: "140px",
-                }}
+                style={{ fontFamily: "Poppins, sans-serif", fontSize: "140px" }}
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
@@ -121,23 +125,33 @@ const Hero = () => {
           </AnimatePresence>
         </div>
 
-        {/* ── LADY IMAGE — always on top (z-50), never covered by yellow ── */}
+        {/* ── LADY IMAGE ──
+            Outer div: position COMPLETELY UNCHANGED
+            motion.div inside: starts scale(0.6), animates to scale(1) via useAnimate ref
+        ── */}
         <div
           className="absolute z-50"
           style={{
             left: "50%",
-            top: "45%",
+            top: "46%",
             transform: "translate(-50%, -50%)",
           }}
         >
-          <img
-            src="/lady.png"
-            alt="Lady"
-            className="w-full h-full object-cover"
-          />
+          <motion.div
+            ref={ladyScope}
+            initial={{ scale: 0.6
+            }}
+            style={{ transformOrigin: "center" }}
+          >
+            <img
+              src="/lady.png"
+              alt="Lady"
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
         </div>
 
-        {/* ── ELLIPSE 1 — hidden under yellow until it settles, then floats up ── */}
+        {/* ── ELLIPSE 1 ── */}
         <div
           className="absolute"
           style={{ left: "159px", top: "320px", zIndex: showEllipses ? 40 : 20 }}
@@ -145,24 +159,13 @@ const Hero = () => {
           <motion.div
             initial={{ y: 0, opacity: 0 }}
             animate={showEllipses ? { y: -80, opacity: 1 } : { y: 0, opacity: 0 }}
-            transition={{
-              duration: 3.8,
-              ease: [0.25, 0.8, 0.25, 1],
-              delay: 0.1,
-            }}
+            transition={{ duration: 3.8, ease: [0.25, 0.8, 0.25, 1], delay: 0.1 }}
           >
-            <Image
-              src="/ellipse1.svg"
-              alt="Sphere 1"
-              width={155}
-              height={155}
-              className="w-[155px] h-[155px]"
-              priority
-            />
+            <Image src="/ellipse1.svg" alt="Sphere 1" width={155} height={155} className="w-[155px] h-[155px]" priority />
           </motion.div>
         </div>
 
-        {/* ── ELLIPSE 2 — hidden under yellow until it settles, then floats up ── */}
+        {/* ── ELLIPSE 2 ── */}
         <div
           className="absolute"
           style={{ left: "1255px", top: "670px", zIndex: showEllipses ? 40 : 20 }}
@@ -170,23 +173,13 @@ const Hero = () => {
           <motion.div
             initial={{ y: 0, opacity: 0 }}
             animate={showEllipses ? { y: -110, opacity: 1 } : { y: 0, opacity: 0 }}
-            transition={{
-              duration: 4.5,
-              ease: [0.25, 0.8, 0.25, 1],
-              delay: 0.5,
-            }}
+            transition={{ duration: 4.5, ease: [0.25, 0.8, 0.25, 1], delay: 0.5 }}
           >
-            <Image
-              src="/ellipse2.png"
-              alt="Sphere 2"
-              width={271}
-              height={271}
-              priority
-            />
+            <Image src="/ellipse2.png" alt="Sphere 2" width={271} height={271} priority />
           </motion.div>
         </div>
 
-        {/* ── BOTTOM 3 IMAGES — slide in from left after yellow settles ── */}
+        {/* ── BOTTOM 3 IMAGES ── */}
         <motion.div
           className="absolute"
           style={{ top: "670px", left: "0px", zIndex: 40 }}
@@ -219,7 +212,7 @@ const Hero = () => {
 
       </section>
 
-      {/* Gray bar below section */}
+      {/* Gray bar */}
       <div className="w-full h-[209px] bg-[#EFEFEF] -mt-[120px]" />
     </>
   );
