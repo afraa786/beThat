@@ -57,10 +57,9 @@ const FashionSection = () => {
 
             <div className="relative z-10 w-full max-w-xl flex flex-col items-end text-right">
 
-                <div className="text-[#D4FF00] font-sans text-4xl font-bold select-none leading-none pr-[150px]">
-                    %
-                </div>
-
+ <div className="ml-auto">
+  <Image src="/hoodie-logo.png" alt="Hoodie" width={33} height={33} />
+</div>
                 <div className="mt-[7px] text-[#373737] text-right">
                     <h2 className="font-[family-name:var(--font-poppins)] text-[26px] font-bold leading-[31px] uppercase">
                         THE PERCENT IS NOT A NUMBER
@@ -96,7 +95,6 @@ const FashionSection = () => {
                     this is just the surface.
                 </p>
 
-                {/* "read our story" also slides in, slightly delayed */}
                 <div
                     className="mt-[12px] text-right"
                     style={{
