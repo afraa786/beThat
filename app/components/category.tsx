@@ -497,7 +497,7 @@ export default function Categories() {
       {/* White Fabric Section */}
       <div
         style={{
-          position: "absolute", top: `${horizontalTop + 1900}px`,
+          position: "absolute", top: `${horizontalTop + 2500}px`,
           left: 0, width: "100%", minHeight: "1500px",
           backgroundImage: "url('/white-fabric.png')",
           backgroundSize: "cover", backgroundPosition: "center",

@@ -159,7 +159,7 @@ const Hero = () => {
           <motion.div
             initial={{ y: 0, opacity: 0 }}
             animate={showEllipses ? { y: -80, opacity: 1 } : { y: 0, opacity: 0 }}
-            transition={{ duration: 3.8, ease: [0.25, 0.8, 0.25, 1], delay: 0.1 }}
+            transition={{ duration: 3.8, ease: [0.25, 0.8, 0.25, 1], delay: 1.2 }}
           >
             <Image src="/ellipse1.svg" alt="Sphere 1" width={155} height={155} className="w-[155px] h-[155px]" priority />
           </motion.div>
@@ -173,7 +173,7 @@ const Hero = () => {
           <motion.div
             initial={{ y: 0, opacity: 0 }}
             animate={showEllipses ? { y: -110, opacity: 1 } : { y: 0, opacity: 0 }}
-            transition={{ duration: 4.5, ease: [0.25, 0.8, 0.25, 1], delay: 0.5 }}
+            transition={{ duration: 4.5, ease: [0.25, 0.8, 0.25, 1], delay: 1.5 }}
           >
             <Image src="/ellipse2.png" alt="Sphere 2" width={271} height={271} priority />
           </motion.div>

@@ -14,8 +14,8 @@ export default function Home() {
       <Navbar isVisible={false} />
       <Hero />
       <FashionSection />
+                <BrandCarousel />
       <Category />
-            <BrandCarousel />
 
       <WhiteBackground />
       <Marquee />

@@ -2,14 +2,16 @@ import Image from "next/image";
 
 const FashionSection = () => {
     return (
-        <section className="relative w-full min-h-screen flex items-center justify-end pr-[80px]">
+        <section className="relative w-full flex items-center justify-end pr-[80px]"
+            style={{ aspectRatio: "1440/621" }}
+        >
             <div className="absolute inset-0 z-0">
                 <Image
                     src="/hoodie.svg"
                     alt="Luxury Fashion Hoodie"
                     fill
-                    className="object-cover object-center"
-                    priority={false}
+                    className="object-contain object-center"
+                    priority={true}
                 />
             </div>
 
