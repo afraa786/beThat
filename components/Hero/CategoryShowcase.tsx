@@ -67,7 +67,7 @@ function SplitImage({
 // ─── CategoryShowcase ─────────────────────────────────────────────────────────
 
 export default function CategoryShowcase() {
-  const horizontalTop    = 120;
+  const horizontalTop    = 25;
   const horizontalHeight = 10;
   const verticalHeight   = 119;
   const trackRef = useRef<HTMLDivElement>(null);
@@ -95,22 +95,66 @@ export default function CategoryShowcase() {
         <div style={{ width: "100%", height: `${horizontalHeight}px`, borderRadius: "8px", position: "absolute", background: "linear-gradient(270deg, #B0B0B0 0%, #D9D9D9 100%)", top: `${horizontalTop}px`, left: 0, zIndex: 2 }} />
 
         {/* Scrolling rack */}
-        <div style={{ position: "absolute", top: `${horizontalTop}px`, width: "100%", overflow: "hidden" }}>
+        <div style={{ position: "absolute", top: `${horizontalTop}px`, width: "100%" }}>
           <div className="rack-track" ref={trackRef}>
             {[...hoodieImages, ...hoodieImages].map((img, index) => (
               <div key={index} className="hanger-unit">
                 <div className="hanger-line" />
-                {/* Only pause on card hover, not the stand */}
+
+                {/* Card — yellow card size: 324×396 */}
                 <div
-                  className="hoodie-card"
                   onMouseEnter={pauseCarousel}
                   onMouseLeave={resumeCarousel}
+                  style={{
+                    position: "relative",
+                    width: "324px",
+                    height: "396px",
+                    marginTop: "10px",
+                    flexShrink: 0,
+                    cursor: "pointer",
+    
+                  }}
                 >
-                  <Image src="/yellow-card.png" alt="Yellow Card" fill style={{ objectFit: "cover" }} />
-                  <div className="hoodie-inner">
-                    <Image src={img} alt="Hoodie" width={220} height={220} style={{ objectFit: "contain" }} />
+                  {/* Layer 1 — Yellow card background fills 324×396 */}
+                  <Image
+                    src="/yellow-card.png"
+                    alt="Yellow Card"
+                    fill
+                    style={{ objectFit: "cover", zIndex: 0 }}
+                  />
+
+                  {/* Layer 2 — hero-carousel.webp at 260×389, centered, pinned to bottom */}
+                   <div style={{
+                    position: "absolute",
+                    bottom: "30px",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    width: "260px",
+                    height: "389px",
+                    zIndex: 1,
+                  }}>
+                    <Image
+                      src="/hero-carousel.webp"
+                      alt="Hero"
+                      fill
+                      style={{ objectFit: "cover", objectPosition: "center top" }}
+                    />
+                  </div>
+
+                  {/* Layer 3 — Hoodie on top */}
+                  <div style={{
+                    position: "absolute",
+                    inset: 0,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    padding: "20px",
+                    zIndex: 2,
+                  }}>
+                    <Image src={img} alt="Hoodie" width={324} height={305} />
                   </div>
                 </div>
+
               </div>
             ))}
           </div>
@@ -127,14 +171,6 @@ export default function CategoryShowcase() {
             background: linear-gradient(180deg, #b0b0b0 0%, #d9d9d9 100%);
             border-radius: 0 0 2px 2px;
           }
-          .hoodie-card {
-            position: relative; width: 280px; height: 350px;
-            margin-top: 20px; flex-shrink: 0; cursor: pointer;
-          }
-          .hoodie-inner {
-            position: absolute; inset: 0;
-            display: flex; align-items: center; justify-content: center; padding: 20px;
-          }
           @keyframes scroll {
             0%   { transform: translateX(0); }
             100% { transform: translateX(-50%); }
@@ -143,7 +179,7 @@ export default function CategoryShowcase() {
       </div>
 
       {/* White Fabric Section */}
-      <div style={{ position: "absolute", top: `${horizontalTop + 2500}px`, left: 0, width: "100%", minHeight: "1700px", backgroundImage: "url('/white-fabric.png')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat", zIndex: 0 }}>
+      <div style={{ position: "absolute", top: `${horizontalTop + 1900}px`, left: 0, width: "100%", minHeight: "1700px", backgroundImage: "url('/white-fabric.png')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat", zIndex: 0 }}>
         <div style={{ position: "absolute", top: "200px", left: "10%", width: "80%" }}>
           <div style={{ position: "absolute", top: "1000px", left: "-60px", maxWidth: "700px" }}>
             <h1 style={{ color: "#373737", fontFamily: "Poppins, sans-serif", fontSize: "70px", fontWeight: 700, textTransform: "uppercase", margin: 0 }}>
@@ -159,14 +195,6 @@ export default function CategoryShowcase() {
 
         <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", zIndex: 1 }}>
           <SplitImage src="/split.png" alt="Feature image" splitAxis="horizontal" splitGap={18} duration={900} zoomScale={1.18} />
-        </div>
-
-        <div style={{ position: "absolute", top: "600px", left: "14%", transform: "translateX(-50%)", width: "108px", height: "108px" }}>
-          <Image src="/ellipse3.svg" alt="Ellipse 3" fill style={{ objectFit: "contain" }} />
-        </div>
-
-        <div style={{ position: "absolute", top: "1000px", right: "-3px", width: "259px", height: "259px" }}>
-          <Image src="/ellipse4.png" alt="Ellipse 4" fill style={{ objectFit: "contain" }} />
         </div>
       </div>
     </>

@@ -19,7 +19,7 @@ export default function Footer() {
           alt="01"
           width={130}
           height={155}
-          className="absolute left-[-39px] bottom-[214px] z-10"
+          className="absolute left-[-50px] bottom-[214px] z-10"
         />
         <Image
           src="/slash.png"
@@ -37,15 +37,30 @@ export default function Footer() {
         />
 
         {/* Social Icons */}
-        <div className="absolute left-[80px] top-[80px] flex gap-[16px] z-20">
-          <Image src="/instagram.svg" alt="Instagram" width={40} height={40}/>
-          <Image src="/facebook.svg" alt="Facebook" width={40} height={40}/>
-          <Image src="/tiktok.svg" alt="TikTok" width={40} height={40}/>
-          <Image src="/whatsapp.svg" alt="WhatsApp" width={40} height={40}/>
-        </div>
+     <div className="absolute left-[5px] top-[80px] flex gap-[16px] z-20">
+  {[
+    { src: "/instagram.svg", alt: "Instagram" },
+    { src: "/facebook.svg",  alt: "Facebook"  },
+    { src: "/tiktok.svg",    alt: "TikTok"    },
+    { src: "/whatsapp.svg",  alt: "WhatsApp"  },
+  ].map(({ src, alt }) => (
+    <div
+      key={alt}
+      className="flex items-center justify-center"
+      style={{
+        width: "55px",
+        height: "55px",
+        borderRadius: "32px",
+        background: "rgba(230, 247, 73, 0.32)",
+      }}
+    >
+      <Image src={src} alt={alt} width={32} height={32} />
+    </div>
+  ))}
+</div>
 
         {/* RIGHT SECTION */}
-        <div className="absolute flex gap-[48px] z-50 left-[778px] right-[80px] top-[59px] bottom-[312px]">
+        <div className="absolute flex gap-[48px] z-50 right-[50px] top-[59px] bottom-[312px]">
 
           {/* Resources */}
           <div>

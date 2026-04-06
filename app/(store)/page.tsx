@@ -1,9 +1,9 @@
-import Hero from "@/components/shared/Hero";
-import FashionSection from "@/components/shared/FashionSection";
-import CategoryShowcase from "@/components/shared/CategoryShowcase";
-import CategorySection from "@/components/shared/CategorySection";
-import CollectionSection from "@/components/shared/CollectionSection";
-import Marquee from "@/components/shared/Marquee";
+import Hero from "@/components/Hero/Hero";
+import FashionSection from "@/components/Hero/FashionSection";
+import CategoryShowcase from "@/components/Hero/CategoryShowcase";
+import CategorySection from "@/components/Hero/CategorySection";
+import CollectionSection from "@/components/Hero/CollectionSection";
+import Marquee from "@/components/Hero/Marquee";
 
 export default function Home() {
   return (
@@ -13,15 +13,16 @@ export default function Home() {
 
       {/* "The percent is not a number / it is a choice" — hoodie zoom section */}
       <FashionSection />
+      
 
       {/* Hanging rack carousel + "Why We Exist" white-fabric section */}
       <CategoryShowcase />
 
       {/* Pants / Blazers / Hoodies category grid */}
-      <CategorySection />
 
       {/* White Collection + Scarf Collection two-panel grid */}
       <CollectionSection />
+      <CategorySection />
 
       {/* Scrolling marquee bar */}
       <Marquee />

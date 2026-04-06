@@ -45,7 +45,7 @@ const AnimatedNav = ({ isVisible }: AnimatedNavProps) => {
           {["Categories", "Collection", "Our Story", "Contact"].map((item) => (
             <Link
               key={item}
-              href="#"
+              href={item === "Our Story" ? "/about-us" : "#"}
               className="flex items-center gap-1 font-sans text-base font-medium text-black italic hover:text-gray-600 transition-colors"
             >
               {item}

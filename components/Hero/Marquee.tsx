@@ -3,7 +3,7 @@
 export default function Marquee() {
   return (
     <div
-      className="overflow-hidden bg-black flex items-center justify-end"
+      className="overflow-hidden bg-gray flex items-center justify-end"
       style={{
         width: "1518px",
         height: "79px",

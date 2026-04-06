@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls \"C:\\\\Users\\\\Afraa\\\\Downloads\\\\beThat\\\\app/\\(store\\)\")",
+      "Bash(ls \"C:\\\\Users\\\\Afraa\\\\Downloads\\\\beThat\\\\app\\\\\\(store\\)\\\\about-us\")"
+    ]
+  }
+}

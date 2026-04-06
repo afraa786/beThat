@@ -2,8 +2,8 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import LowStockBadge from '@/components/shared/LowStockBadge';
-import Button from '@/components/shared/Button';
+import LowStockBadge from '@/components/Hero/LowStockBadge';
+import Button from '@/components/Hero/Button';
 
 // TODO: fetch lowStockThreshold from Firestore settings doc instead of hard-coding
 const DEFAULT_LOW_STOCK_THRESHOLD = 5;
