@@ -2,7 +2,11 @@
   "permissions": {
     "allow": [
       "Bash(ls \"C:\\\\Users\\\\Afraa\\\\Downloads\\\\beThat\\\\app/\\(store\\)\")",
-      "Bash(ls \"C:\\\\Users\\\\Afraa\\\\Downloads\\\\beThat\\\\app\\\\\\(store\\)\\\\about-us\")"
+      "Bash(ls \"C:\\\\Users\\\\Afraa\\\\Downloads\\\\beThat\\\\app\\\\\\(store\\)\\\\about-us\")",
+      "Bash(npm run:*)",
+      "Bash(netstat -ano)",
+      "Bash(findstr :3000)",
+      "Bash(findstr LISTENING)"
     ]
   }
 }
