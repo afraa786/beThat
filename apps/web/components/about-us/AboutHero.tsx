@@ -20,6 +20,7 @@ export default function AboutHero() {
           />
         </div>
 
+
         <div className="absolute bottom-[141px] left-[200px] z-10">
           <Image
             src="/about-us-header.webp"
